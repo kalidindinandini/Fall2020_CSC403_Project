@@ -123,11 +123,14 @@
   <metadata name="tmrPlayerMove.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>196, 17</value>
   </metadata>
+  <data name="txtContent.Text" xml:space="preserve">
+    <value>Mr. Peanut’s adventures take you on a magical journey through a mysterious and magical world. It’s full of fun, humor, and surprises! You’ll be part of his big adventure, and as you go, you’ll face off against powerful enemies and uncover hidden secrets. Mr. Peanut is not only brave, but he’s also smart and has a unique sense of humor that shines through every situation. The game has special buttons to help you play better, like a healing button, a pause button, and even one to quit the game. It's easy to play and fun! If you’re looking for a fun, quirky, and engaging game that’s packed with character and heart, “Epic Adventures” is the perfect choice!</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="picBossKoolAid.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAhIAAAMYCAYAAACe0Q5tAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAP
-        YQAAD2EBqD+naQAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAP+KSURBVHhe
+        XgAAD14BBc04LQAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAP+KSURBVHhe
         7L2HmxxpdTU+0zlPT86SRjOjURzlnHPOOecsjSbn6Z6ck3LWLmsMBhuMMWDj8NmAwRgwmAwm2MCC/f3+
         ifO759a0VizNkne1fO8+z9mqebu66q2qfnTPe8O5CQAM/h/Bj//nJ8544wYGBgYGBr8t4g4avLvw+v/+
         jz3e+Gf/7fMT7z16uLu2qa6iuqGm6vGrT/Dlr38l+6f/389s8Y43MDAwMDD4TRF30ODdi+//93/5n77n

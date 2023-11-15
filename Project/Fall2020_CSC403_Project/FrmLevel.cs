@@ -32,8 +32,10 @@ namespace Fall2020_CSC403_Project
         private bool gameIsPaused = false;
         // Button for the UserFAQ's in the Main Menu.
         private Button buttonForUserFAQ;
+        //game story button
+        private Button gameStoryButton;
 
-
+        string name;
         // Start of the game code.
         public FrmLevel()
         {
@@ -133,8 +135,27 @@ namespace Fall2020_CSC403_Project
             };
             buttonForUserFAQ.Click += (sender, e) => showTheFAQForm();
             mainMenuPanel.Controls.Add(buttonForUserFAQ);
+
+            // Story panel button
+            startY += buttonHeight + spacing;
+            gameStoryButton = new Button()
+            {
+                Text = "Game Story",
+                Size = new Size(buttonWidth, buttonHeight),
+                Location = new Point(10, startY),
+                ForeColor = Color.White,
+                BackColor = Color.Black
+            };
+            gameStoryButton.Click += gameStoryButton_Click;
+            mainMenuPanel.Controls.Add(gameStoryButton);
         }
 
+
+        private void gameStoryButton_Click(object sender, EventArgs e)
+        {
+            groupBox1.Visible = true;
+            groupBox1.Location = new Point(341, 118);
+        }
 
         private void NewGameButton_Click(object sender, EventArgs e)
         {
@@ -148,6 +169,7 @@ namespace Fall2020_CSC403_Project
             InitializeRestartButton();
             InitializeButtonForPlayPause();
             //restartButton.Visible = true;
+           
         }
 
         private void InitializeRestartButton()
@@ -284,6 +306,7 @@ namespace Fall2020_CSC403_Project
 
         private void FrmLevel_Load(object sender, EventArgs e)
         {
+            groupBox1.Visible = false;
             const int PADDING = 7;
             const int NUM_WALLS = 13;
 
@@ -347,15 +370,29 @@ namespace Fall2020_CSC403_Project
             // check collision with enemies
             if (HitAChar(player, enemyPoisonPacket))
             {
-                Fight(enemyPoisonPacket);
+                if(picEnemyPoisonPacket.Visible == true)
+                {
+                    enemyPoisonPacket.Img = picEnemyPoisonPacket.BackgroundImage;
+                    Fight(enemyPoisonPacket);
+                }
+               
             }
             else if (HitAChar(player, enemyCheeto))
             {
-                Fight(enemyCheeto);
+                if(picEnemyCheeto.Visible == true) {
+                    enemyCheeto.Img = picEnemyCheeto.BackgroundImage;
+                    Fight(enemyCheeto);
+                }
+               
             }
             if (HitAChar(player, bossKoolaid))
             {
-                Fight(bossKoolaid);
+               if(picBossKoolAid.Visible == true)
+                {
+                    bossKoolaid.Img = picBossKoolAid.BackgroundImage;
+                    Fight(bossKoolaid);
+                }
+               
             }
 
             // update player's picture box
@@ -385,31 +422,62 @@ namespace Fall2020_CSC403_Project
 
         private void Fight(Enemy enemy)
         {
-            player.ResetMoveSpeed();
-            player.MoveBack();
-            frmBattle = FrmBattle.GetInstance(enemy);
-            frmBattle.Show();
+           
 
             if (enemy == bossKoolaid)
             {
+                name = "bosskoolaid";
+                enemy.Img = picBossKoolAid.BackgroundImage;
                 frmBattle.SetupForBossBattle();
 
+            }else if(enemy == enemyCheeto)
+            {
+                name = "enemycheeto";
+                enemy.Img = picEnemyCheeto.BackgroundImage;
+
+            }else if(enemy == enemyPoisonPacket)
+            {
+                name = "enemyPoisonPacket";
+                enemy.Img = picEnemyPoisonPacket.BackgroundImage;
             }
-            RemoveEnemy(enemy);
+
+            player.ResetMoveSpeed();
+            player.MoveBack();
+            frmBattle = FrmBattle.GetInstance(enemy, player, name);
+            frmBattle.Show();
+
+
+
+
+            //updating player health
+            int health = player.Health - 8;
+           
+            float playerHealthPer = health / (float)player.MaxHealth;
+            const int MAX_HEALTHBAR_WIDTH = 226;
+            lblPlayerHealth.Width = (int)(MAX_HEALTHBAR_WIDTH * playerHealthPer);
+            lblPlayerHealth.Text = health.ToString();            
+       
+                //RemoveEnemy(enemy);
+            
         }
         private void RemoveEnemy(Enemy enemy)
         {
             if (enemy == enemyPoisonPacket)
             {
                 picEnemyPoisonPacket.Visible = false;
+                btn1.Visible = false;
+               
             }
-            else if (enemy == bossKoolaid && enemy.Health == 0)
+            else if (enemy == bossKoolaid )
             {
                 picBossKoolAid.Visible = false;
+                button6.Visible = false;
+                
             }
             else if (enemy == enemyCheeto)
             {
                 picEnemyCheeto.Visible = false;
+                button14.Visible=false;
             }
 
         }
@@ -481,7 +549,251 @@ namespace Fall2020_CSC403_Project
 
         }
 
+        private void txtContent_TextChanged(object sender, EventArgs e)
+        {
 
+        }
 
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+           groupBox1.Visible = false;   
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            groupBox1.Location = new Point(632, 716);
+            groupBox1.Visible = false;
+            
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            picWall0.BackgroundImage = Resources.wall3;
+            picWall1.BackgroundImage = Resources.wall3;
+            picWall2.BackgroundImage = Resources.wall3;
+            picWall3.BackgroundImage = Resources.wall3;   
+            picWall4.BackgroundImage = Resources.wall3;
+            picWall5.BackgroundImage = Resources.wall3;
+            picWall6.BackgroundImage = Resources.wall3; 
+            picWall7.BackgroundImage = Resources.wall3;
+            picWall8.BackgroundImage = Resources.wall3;
+            picWall9.BackgroundImage = Resources.wall3;
+            picWall10.BackgroundImage = Resources.wall3;
+            picWall11.BackgroundImage = Resources.wall3;    
+            picWall12.BackgroundImage = Resources.wall3;
+           
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            picWall0.BackgroundImage = Resources.wall;
+            picWall1.BackgroundImage = Resources.wall;
+            picWall2.BackgroundImage = Resources.wall;
+            picWall3.BackgroundImage = Resources.wall;
+            picWall4.BackgroundImage = Resources.wall;
+            picWall5.BackgroundImage = Resources.wall;
+            picWall6.BackgroundImage = Resources.wall;
+            picWall7.BackgroundImage = Resources.wall;
+            picWall8.BackgroundImage = Resources.wall;
+            picWall9.BackgroundImage = Resources.wall;
+            picWall10.BackgroundImage = Resources.wall;
+            picWall11.BackgroundImage = Resources.wall;
+            picWall12.BackgroundImage = Resources.wall;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            picWall0.BackgroundImage = Resources.wall2;
+            picWall1.BackgroundImage = Resources.wall2;
+            picWall2.BackgroundImage = Resources.wall2;
+            picWall3.BackgroundImage = Resources.wall2;
+            picWall4.BackgroundImage = Resources.wall2;
+            picWall5.BackgroundImage = Resources.wall2;
+            picWall6.BackgroundImage = Resources.wall2;
+            picWall7.BackgroundImage = Resources.wall2;
+            picWall8.BackgroundImage = Resources.wall2;
+            picWall9.BackgroundImage = Resources.wall2;
+            picWall10.BackgroundImage = Resources.wall2;
+            picWall11.BackgroundImage = Resources.wall2;
+            picWall12.BackgroundImage = Resources.wall2;
+        }
+        
+        private void button4_Click(object sender, EventArgs e)
+        {
+            picWall0.BackgroundImage = Resources.wall4;
+            picWall1.BackgroundImage = Resources.wall4;
+            picWall2.BackgroundImage = Resources.wall4;
+            picWall3.BackgroundImage = Resources.wall4;
+            picWall4.BackgroundImage = Resources.wall4;
+            picWall5.BackgroundImage = Resources.wall4;
+            picWall6.BackgroundImage = Resources.wall4;
+            picWall7.BackgroundImage = Resources.wall4;
+            picWall8.BackgroundImage = Resources.wall4;
+            picWall9.BackgroundImage = Resources.wall4;
+            picWall10.BackgroundImage = Resources.wall4;
+            picWall11.BackgroundImage = Resources.wall4;
+            picWall12.BackgroundImage = Resources.wall4;
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+              Application.Restart();
+              Environment.Exit(0);
+           
+        }
+
+        string skinChange;
+        private void button15_Click(object sender, EventArgs e)
+        {
+            groupBox3.Location = new Point(1257, 298);
+            
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            skinChange = "boss";
+            groupBox3.Location = new Point(887, 98);
+            
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            skinChange = "poison";
+            groupBox3.Location = new Point(194, 74);
+           
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            skinChange = "cheeto";
+            groupBox3.Location = new Point(887, 243);
+            
+        }
+
+        private void picBossKoolAid_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void picEnemyCheeto_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if(skinChange == "boss")
+            {
+                picBossKoolAid.BackgroundImage = Resources.enemy_poisonpacket;
+            }else if(skinChange == "cheeto")
+            {
+                picEnemyCheeto.BackgroundImage = Resources.enemy_poisonpacket;
+            }
+            else if(skinChange == "poison")
+            {
+                picEnemyPoisonPacket.BackgroundImage = Resources.enemy_poisonpacket;    
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (skinChange == "boss")
+            {
+                picBossKoolAid.BackgroundImage = Resources.enemy_koolaid;
+            }
+            else if (skinChange == "cheeto")
+            {
+                picEnemyCheeto.BackgroundImage = Resources.enemy_koolaid;
+            }
+            else if( skinChange == "poison")
+            {
+                picEnemyPoisonPacket.BackgroundImage = Resources.enemy_koolaid;
+            }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (skinChange == "boss")
+            {
+                picBossKoolAid.BackgroundImage = Resources.enemy_cheetos;
+            }
+            else if (skinChange == "cheeto")
+            {
+                picEnemyCheeto.BackgroundImage = Resources.enemy_cheetos;
+            }
+            else if(skinChange == "poison")
+            {
+                picEnemyPoisonPacket.BackgroundImage = Resources.enemy_cheetos;
+            }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            if (skinChange == "boss")
+            {
+                picBossKoolAid.BackgroundImage = Resources.batvillain;
+            }
+            else if (skinChange == "cheeto")
+            {
+                picEnemyCheeto.BackgroundImage = Resources.batvillain;
+            }
+            else if((skinChange =="poison"))
+            {
+                picEnemyPoisonPacket.BackgroundImage = Resources.batvillain;
+            }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            if (skinChange == "boss")
+            {
+                picBossKoolAid.BackgroundImage = Resources.evilman;
+            }
+            else if (skinChange == "cheeto")
+            {
+                picEnemyCheeto.BackgroundImage = Resources.evilman;
+            }
+            else if( skinChange =="poison")
+            {
+                picEnemyPoisonPacket.BackgroundImage = Resources.evilman;
+            }
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            if (skinChange == "boss")
+            {
+                picBossKoolAid.BackgroundImage = Resources.mojo;
+            }
+            else if (skinChange == "cheeto")
+            {
+                picEnemyCheeto.BackgroundImage = Resources.mojo;
+            }
+            else if((skinChange == "poison"))
+            {
+                picEnemyPoisonPacket.BackgroundImage = Resources.mojo;
+            }
+        }
+
+        private void lblPlayerHealthFull_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button13_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show("Congratulations, you now have increased attack power, improved agility, and the ability to break through obstacles.");
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Congratulations, you now have a protective shield against enemy attacks.");
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
