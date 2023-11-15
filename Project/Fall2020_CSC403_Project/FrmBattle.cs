@@ -16,7 +16,7 @@ namespace Fall2020_CSC403_Project
         private Button fleeButton;
         // Adding a button for the Heal Ability.
         private Button healButton;
-
+       public static string charname;
         private FrmBattle()
         {
             InitializeComponent();
@@ -137,13 +137,17 @@ namespace Fall2020_CSC403_Project
             tmrFinalBattle.Enabled = true;
         }
 
-        public static FrmBattle GetInstance(Enemy enemy)
+        public static FrmBattle GetInstance(Enemy enemy, Player player, string name)
         {
+            
             if (instance == null)
             {
+                charname = name;
                 instance = new FrmBattle();
                 instance.enemy = enemy;
+                
                 instance.Setup();
+                
             }
             return instance;
         }
@@ -159,10 +163,13 @@ namespace Fall2020_CSC403_Project
 
             lblPlayerHealthFull.Text = player.Health.ToString();
             lblEnemyHealthFull.Text = enemy.Health.ToString();
+
+           
         }
 
         private void btnAttack_Click(object sender, EventArgs e)
         {
+           
             player.OnAttack(-4);
             if (enemy.Health > 0)
             {
@@ -170,11 +177,48 @@ namespace Fall2020_CSC403_Project
             }
 
             UpdateHealthBars();
-            if (player.Health <= 0 || enemy.Health <= 0)
+            if (player.Health <= 0)
             {
+                // instance = null;
+                groupBox2.Visible = true;
+                groupBox2.Location = new Point(140, 184);
+                // Close();
+            }
+           
+            if ( enemy.Health <= 0)
+            {
+                if (charname == "bosskoolaid")
+                {
+                    PictureBox t = Application.OpenForms["FrmLevel"].Controls.Find("picBossKoolAid", true)[0] as PictureBox;
+                    Button b = Application.OpenForms["FrmLevel"].Controls.Find("button6", true)[0] as Button;
+                    b.Visible = false;
+                    t.Visible = false;
+                    
+
+                }
+                else if (charname == "enemycheeto")
+                {
+                    PictureBox t = Application.OpenForms["FrmLevel"].Controls.Find("picEnemyCheeto", true)[0] as PictureBox;
+                    Button b = Application.OpenForms["FrmLevel"].Controls.Find("button14", true)[0] as Button;
+                    b.Visible = false;
+                    t.Visible = false;
+
+                }
+                else if (charname == "enemyPoisonPacket")
+                {
+                    PictureBox t = Application.OpenForms["FrmLevel"].Controls.Find("picEnemyPoisonPacket", true)[0] as PictureBox;
+                    Button b = Application.OpenForms["FrmLevel"].Controls.Find("btn1", true)[0] as Button;
+                    b.Visible = false;
+                    t.Visible = false;
+                }
                 instance = null;
                 Close();
             }
+
+            
+
+
+
         }
 
         private void EnemyDamage(int amount)
@@ -192,5 +236,62 @@ namespace Fall2020_CSC403_Project
             picBossBattle.Visible = false;
             tmrFinalBattle.Enabled = false;
         }
+
+        private void FrmBattle_Load(object sender, EventArgs e)
+        {
+            // Timer to Close advert 
+            System.Windows.Forms.Timer MyTimer = new System.Windows.Forms.Timer();
+            MyTimer.Interval = (5000); // 5 seconds
+            MyTimer.Tick += new EventHandler(timer1_Tick);
+            MyTimer.Start();
+
+            groupBox1.Visible = true;
+            groupBox1.Location = new Point(160, 60);
+            //picEnemy.BackgroundImage = enemy.Img;
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+            groupBox1.Visible = false;
+        }
+        private int[] myTimer = new[] { 3, 1, 3 };
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lblTime.Text = myTimer[0].ToString() + " " + myTimer[1].ToString() + " " + myTimer[2].ToString();
+            if (myTimer[0] > 0)
+            {
+                myTimer[0] -= 1;
+            }
+            else if (myTimer[1] > 0)
+            {
+                myTimer[1] -= 1;
+                groupBox1.Visible = false;
+            }
+           
+           
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            groupBox1.Visible =false;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+            Environment.Exit(0);
+        }
+
+        private void lblPlayerHealthFull_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void picEnemy_Click(object sender, EventArgs e)
+        {
+
+        }
     }
+
+    
 }

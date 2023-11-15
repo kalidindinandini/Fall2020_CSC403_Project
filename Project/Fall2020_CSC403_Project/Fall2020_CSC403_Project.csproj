@@ -72,6 +72,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
+    <None Include="data\death.jpg.webp" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -120,6 +121,23 @@
       <Project>{F1E60F80-1868-4FE5-991B-FDDCFAF9B16B}</Project>
       <Name>MyGameLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="data\advert1.jpg" />
+    <Content Include="data\advert2.jpeg" />
+    <None Include="data\raw images\cherry_koolaid_packet.jpeg" />
+    <Content Include="data\batvillain.png" />
+    <Content Include="data\evilman.png" />
+    <Content Include="data\freaky-fred-610x990.jpg" />
+    <Content Include="data\mojo.jpg" />
+    <Content Include="data\mysticshield.jpeg" />
+    <Content Include="data\png-clipart-mojo-jojo.png" />
+    <Content Include="data\powerorb.jpg" />
+    <Content Include="data\powerorb2.jpeg" />
+    <Content Include="data\raw images\advert2.jpeg" />
+    <Content Include="data\wall2.JPG" />
+    <Content Include="data\wall3.jpeg" />
+    <Content Include="data\wall4.jpeg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
