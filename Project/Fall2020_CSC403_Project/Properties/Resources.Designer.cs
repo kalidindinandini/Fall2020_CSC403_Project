@@ -83,9 +83,9 @@ namespace Fall2020_CSC403_Project.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap battle_screen {
+        internal static System.Drawing.Bitmap battle_screen_fw {
             get {
-                object obj = ResourceManager.GetObject("battle_screen", resourceCulture);
+                object obj = ResourceManager.GetObject("battle_screen_fw", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,9 @@ namespace Fall2020_CSC403_Project.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap enemy_cheetos {
+        internal static System.Drawing.Bitmap enemy_cheetos_fw {
             get {
-                object obj = ResourceManager.GetObject("enemy_cheetos", resourceCulture);
+                object obj = ResourceManager.GetObject("enemy_cheetos_fw", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +133,9 @@ namespace Fall2020_CSC403_Project.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap enemy_poisonpacket {
+        internal static System.Drawing.Bitmap enemy_poisonpacket_fw {
             get {
-                object obj = ResourceManager.GetObject("enemy_poisonpacket", resourceCulture);
+                object obj = ResourceManager.GetObject("enemy_poisonpacket_fw", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -215,16 +215,6 @@ namespace Fall2020_CSC403_Project.Properties {
         internal static System.Drawing.Bitmap powerorb2 {
             get {
                 object obj = ResourceManager.GetObject("powerorb2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap powerorb21 {
-            get {
-                object obj = ResourceManager.GetObject("powerorb21", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

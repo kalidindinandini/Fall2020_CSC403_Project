@@ -685,14 +685,14 @@ namespace Fall2020_CSC403_Project
         {
             if(skinChange == "boss")
             {
-                picBossKoolAid.BackgroundImage = Resources.enemy_poisonpacket;
+                picBossKoolAid.BackgroundImage = Resources.enemy_poisonpacket_fw;
             }else if(skinChange == "cheeto")
             {
-                picEnemyCheeto.BackgroundImage = Resources.enemy_poisonpacket;
+                picEnemyCheeto.BackgroundImage = Resources.enemy_poisonpacket_fw;
             }
             else if(skinChange == "poison")
             {
-                picEnemyPoisonPacket.BackgroundImage = Resources.enemy_poisonpacket;    
+                picEnemyPoisonPacket.BackgroundImage = Resources.enemy_poisonpacket_fw;    
             }
         }
 
@@ -716,15 +716,15 @@ namespace Fall2020_CSC403_Project
         {
             if (skinChange == "boss")
             {
-                picBossKoolAid.BackgroundImage = Resources.enemy_cheetos;
+                picBossKoolAid.BackgroundImage = Resources.enemy_cheetos_fw;
             }
             else if (skinChange == "cheeto")
             {
-                picEnemyCheeto.BackgroundImage = Resources.enemy_cheetos;
+                picEnemyCheeto.BackgroundImage = Resources.enemy_cheetos_fw;
             }
             else if(skinChange == "poison")
             {
-                picEnemyPoisonPacket.BackgroundImage = Resources.enemy_cheetos;
+                picEnemyPoisonPacket.BackgroundImage = Resources.enemy_cheetos_fw;
             }
         }
 
