@@ -483,5 +483,238 @@ namespace Fall2020_CSC403_Project
 
 
 
+<<<<<<< Updated upstream
+=======
+        }
+
+        // Event handler for button5 click. Changes the background image of all wall PictureBoxes to the default 'wall'.
+        private void button5_Click(object sender, EventArgs e)
+        {
+            picWall0.BackgroundImage = Resources.wall;
+            picWall1.BackgroundImage = Resources.wall;
+            picWall2.BackgroundImage = Resources.wall;
+            picWall3.BackgroundImage = Resources.wall;
+            picWall4.BackgroundImage = Resources.wall;
+            picWall5.BackgroundImage = Resources.wall;
+            picWall6.BackgroundImage = Resources.wall;
+            picWall7.BackgroundImage = Resources.wall;
+            picWall8.BackgroundImage = Resources.wall;
+            picWall9.BackgroundImage = Resources.wall;
+            picWall10.BackgroundImage = Resources.wall;
+            picWall11.BackgroundImage = Resources.wall;
+            picWall12.BackgroundImage = Resources.wall;
+        }
+
+        // Event handler for button2 click. Changes the background image of all wall PictureBoxes to 'wall2'.
+        private void button2_Click(object sender, EventArgs e)
+        {
+            picWall0.BackgroundImage = Resources.wall2;
+            picWall1.BackgroundImage = Resources.wall2;
+            picWall2.BackgroundImage = Resources.wall2;
+            picWall3.BackgroundImage = Resources.wall2;
+            picWall4.BackgroundImage = Resources.wall2;
+            picWall5.BackgroundImage = Resources.wall2;
+            picWall6.BackgroundImage = Resources.wall2;
+            picWall7.BackgroundImage = Resources.wall2;
+            picWall8.BackgroundImage = Resources.wall2;
+            picWall9.BackgroundImage = Resources.wall2;
+            picWall10.BackgroundImage = Resources.wall2;
+            picWall11.BackgroundImage = Resources.wall2;
+            picWall12.BackgroundImage = Resources.wall2;
+        }
+
+        // Event handler for button4 click. Changes the background image of all wall PictureBoxes to 'wall4'.        
+        private void button4_Click(object sender, EventArgs e)
+        {
+            picWall0.BackgroundImage = Resources.wall4;
+            picWall1.BackgroundImage = Resources.wall4;
+            picWall2.BackgroundImage = Resources.wall4;
+            picWall3.BackgroundImage = Resources.wall4;
+            picWall4.BackgroundImage = Resources.wall4;
+            picWall5.BackgroundImage = Resources.wall4;
+            picWall6.BackgroundImage = Resources.wall4;
+            picWall7.BackgroundImage = Resources.wall4;
+            picWall8.BackgroundImage = Resources.wall4;
+            picWall9.BackgroundImage = Resources.wall4;
+            picWall10.BackgroundImage = Resources.wall4;
+            picWall11.BackgroundImage = Resources.wall4;
+            picWall12.BackgroundImage = Resources.wall4;
+        }
+
+        // Event handler for the second button2 click (duplicated button). Restarts the application.
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            Application.Restart();
+            Environment.Exit(0);
+
+        }
+
+        string skinChange;
+
+        // Event handler for button15 click. Moves groupBox3 to a specific location on the screen.
+        private void button15_Click(object sender, EventArgs e)
+        {
+            groupBox3.Location = new Point(1257, 298);
+
+        }
+
+        // Event handler for button6 click. Sets the skin change target to 'boss' and moves groupBox3.
+        private void button6_Click(object sender, EventArgs e)
+        {
+            skinChange = "boss";
+            groupBox3.Location = new Point(887, 98);
+
+        }
+
+        // Event handler for button13 click. Sets the skin change target to 'poison' and moves groupBox3.
+        private void button13_Click(object sender, EventArgs e)
+        {
+            skinChange = "poison";
+            groupBox3.Location = new Point(194, 74);
+
+        }
+
+        // Event handler for button14 click. Sets the skin change target to 'cheeto' and moves groupBox3.
+        private void button14_Click(object sender, EventArgs e)
+        {
+            skinChange = "cheeto";
+            groupBox3.Location = new Point(887, 243);
+
+        }
+
+        private void picBossKoolAid_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void picEnemyCheeto_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // Event handler for button7 click. Changes the skin of the selected enemy to 'enemy_poisonpacket_fw'.
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (skinChange == "boss")
+            {
+                picBossKoolAid.BackgroundImage = Resources.enemy_poisonpacket_fw;
+            }
+            else if (skinChange == "cheeto")
+            {
+                picEnemyCheeto.BackgroundImage = Resources.enemy_poisonpacket_fw;
+            }
+            else if (skinChange == "poison")
+            {
+                picEnemyPoisonPacket.BackgroundImage = Resources.enemy_poisonpacket_fw;
+            }
+        }
+
+        // Event handler for button8 click. Changes the skin of the selected enemy to 'enemy_koolaid'.
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (skinChange == "boss")
+            {
+                picBossKoolAid.BackgroundImage = Resources.enemy_koolaid;
+            }
+            else if (skinChange == "cheeto")
+            {
+                picEnemyCheeto.BackgroundImage = Resources.enemy_koolaid;
+            }
+            else if (skinChange == "poison")
+            {
+                picEnemyPoisonPacket.BackgroundImage = Resources.enemy_koolaid;
+            }
+        }
+
+        // Event handler for button9 click. Changes the skin of the selected enemy to 'enemy_cheetos_fw'.
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (skinChange == "boss")
+            {
+                picBossKoolAid.BackgroundImage = Resources.enemy_cheetos_fw;
+            }
+            else if (skinChange == "cheeto")
+            {
+                picEnemyCheeto.BackgroundImage = Resources.enemy_cheetos_fw;
+            }
+            else if (skinChange == "poison")
+            {
+                picEnemyPoisonPacket.BackgroundImage = Resources.enemy_cheetos_fw;
+            }
+        }
+
+        // Event handler for button10 click. Changes the skin of the selected enemy to 'batvillain'.
+        private void button10_Click(object sender, EventArgs e)
+        {
+            if (skinChange == "boss")
+            {
+                picBossKoolAid.BackgroundImage = Resources.batvillain;
+            }
+            else if (skinChange == "cheeto")
+            {
+                picEnemyCheeto.BackgroundImage = Resources.batvillain;
+            }
+            else if ((skinChange == "poison"))
+            {
+                picEnemyPoisonPacket.BackgroundImage = Resources.batvillain;
+            }
+        }
+
+        // Event handler for button11 click. Changes the skin of the selected enemy to 'evilman'.
+        private void button11_Click(object sender, EventArgs e)
+        {
+            if (skinChange == "boss")
+            {
+                picBossKoolAid.BackgroundImage = Resources.evilman;
+            }
+            else if (skinChange == "cheeto")
+            {
+                picEnemyCheeto.BackgroundImage = Resources.evilman;
+            }
+            else if (skinChange == "poison")
+            {
+                picEnemyPoisonPacket.BackgroundImage = Resources.evilman;
+            }
+        }
+
+        // Event handler for button12 click. Changes the skin of the selected enemy to 'mojo'.
+        private void button12_Click(object sender, EventArgs e)
+        {
+            if (skinChange == "boss")
+            {
+                picBossKoolAid.BackgroundImage = Resources.mojo;
+            }
+            else if (skinChange == "cheeto")
+            {
+                picEnemyCheeto.BackgroundImage = Resources.mojo;
+            }
+            else if ((skinChange == "poison"))
+            {
+                picEnemyPoisonPacket.BackgroundImage = Resources.mojo;
+            }
+        }
+
+        private void lblPlayerHealthFull_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // Event handler for button13 click. Displays a message about increased player abilities.
+        private void button13_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show("Congratulations, you now have increased attack power, improved agility, and the ability to break through obstacles. \n\n Kidding! If you actually want to use the weapon, please but the Full game version in Amazon. Its just $99.");
+        }
+
+        // Event handler for button16 click. Displays a message about a new protective shield ability.
+        private void button16_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Congratulations, you now have a protective shield against enemy attacks.");
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+>>>>>>> Stashed changes
     }
 }
