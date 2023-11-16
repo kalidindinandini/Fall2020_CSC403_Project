@@ -821,13 +821,13 @@ namespace Fall2020_CSC403_Project
         // Event handler for button13 click. Displays a message about increased player abilities.
         private void button13_Click_1(object sender, EventArgs e)
         {
-            MessageBox.Show("Congratulations, you now have increased attack power, improved agility, and the ability to break through obstacles. \n\n Kidding! If you actually want to use the orb, please purchase the full version of the game from Amazon. The full version is only for 99$." );
+            MessageBox.Show("Congratulations, you now have increased attack power, improved agility, and the ability to break through obstacles. \n\n Kidding! If you actually want to use the orb, please purchase the full version of the game from Amazon. \n\n The full version is only for $99." );
         }
 
         // Event handler for button16 click. Displays a message about a new protective shield ability.
         private void button16_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Congratulations, you now have a protective shield against enemy attacks.  \n\n Kidding! If you actually want to use the shield, please purchase the full version of the game from Amazon. The full version is only for 99$.");
+            MessageBox.Show("Congratulations, you now have a protective shield against enemy attacks.  \n\n Kidding! If you actually want to use the shield, please purchase the full version of the game from Amazon. \n\n The full version is only for $99.");
         }
 
         private void label3_Click(object sender, EventArgs e)
