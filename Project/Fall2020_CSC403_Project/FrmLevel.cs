@@ -36,7 +36,7 @@ namespace Fall2020_CSC403_Project
         private Button gameStoryButton;
 
         string name;
-        // Start of the game code.
+        // Constructor for FrmLevel, initializes game components and sets up the main menu.
         public FrmLevel()
         {
             InitializeComponent();
@@ -45,10 +45,10 @@ namespace Fall2020_CSC403_Project
             this.KeyPreview = true;
             // Initialize the game in 'menu state'
             SetupMainMenu();
-            InitializeGameComponents(false); // Add this method
+            InitializeGameComponents(false);
         }
 
-        // Code to Initialize the Restart Button in the FrmLevel Code.
+        // Initializes game components and sets their visibility.
 
 
         private void InitializeGameComponents(bool visible)
@@ -61,7 +61,7 @@ namespace Fall2020_CSC403_Project
                 }
             }
         }
-
+        // Sets up the main menu including buttons and their event handlers.
         private void SetupMainMenu()
         {
             // Spacing and sizing
@@ -150,18 +150,19 @@ namespace Fall2020_CSC403_Project
             mainMenuPanel.Controls.Add(gameStoryButton);
         }
 
-
+        // Event handler for the Game Story button click, makes the story group box visible.
         private void gameStoryButton_Click(object sender, EventArgs e)
         {
             groupBox1.Visible = true;
             groupBox1.Location = new Point(341, 118);
         }
-
+        // Event handler for starting a new game, initializes game components and starts the game.
         private void NewGameButton_Click(object sender, EventArgs e)
         {
             StartNewGame();
         }
 
+        // Starts a new game by hiding the main menu and showing game components.
         private void StartNewGame()
         {
             mainMenuPanel.Visible = false;
@@ -169,9 +170,10 @@ namespace Fall2020_CSC403_Project
             InitializeRestartButton();
             InitializeButtonForPlayPause();
             //restartButton.Visible = true;
-           
+
         }
 
+        // Initializes the Restart button and its event handler.
         private void InitializeRestartButton()
         {
             restartButton = new Button();
@@ -209,6 +211,8 @@ namespace Fall2020_CSC403_Project
             this.Controls.Add(buttonForPlayPause);
             buttonForPlayPause.BringToFront();
         }
+
+        // Event handler for the Play/Pause button, toggles game pause state.
         private void clickButtonForPlayPause(object sender, EventArgs e)
         {
             gameIsPaused = !gameIsPaused;
@@ -225,6 +229,7 @@ namespace Fall2020_CSC403_Project
             }
         }
 
+        // Shows the FAQ form with options for different FAQ categories.
         private void showTheFAQForm()
         {
             Form faqForm = new Form()
@@ -267,7 +272,7 @@ namespace Fall2020_CSC403_Project
 
             faqForm.ShowDialog();
         }
-
+        // Displays FAQ details based on the selected category.
         private void ShowFaqDetails(string faqType)
         {
             string contentForFAQ = "";
@@ -303,7 +308,7 @@ namespace Fall2020_CSC403_Project
             MessageBox.Show(contentForFAQ, $"{faqType} FAQs");
         }
 
-
+        // Form Load event handler, initializes player, enemies, walls, and game timer.
         private void FrmLevel_Load(object sender, EventArgs e)
         {
             groupBox1.Visible = false;
@@ -337,18 +342,20 @@ namespace Fall2020_CSC403_Project
         }
 
 
-
+        // Creates a Vector2 position from a PictureBox control.
         private Vector2 CreatePosition(PictureBox pic)
         {
             return new Vector2(pic.Location.X, pic.Location.Y);
         }
 
+        // Creates a collider for a PictureBox control with specified padding.
         private Collider CreateCollider(PictureBox pic, int padding)
         {
             Rectangle rect = new Rectangle(pic.Location, new Size(pic.Size.Width - padding, pic.Size.Height - padding));
             return new Collider(rect);
         }
 
+        // Timer event handler for updating in-game time display.
         private void tmrUpdateInGameTime_Tick(object sender, EventArgs e)
         {
             TimeSpan span = DateTime.Now - timeBegin;
@@ -356,6 +363,7 @@ namespace Fall2020_CSC403_Project
             lblInGameTime.Text = "Time: " + time.ToString();
         }
 
+        // Timer event handler for moving the player and handling collisions.
         private void tmrPlayerMove_Tick(object sender, EventArgs e)
         {
             // move player
@@ -370,29 +378,30 @@ namespace Fall2020_CSC403_Project
             // check collision with enemies
             if (HitAChar(player, enemyPoisonPacket))
             {
-                if(picEnemyPoisonPacket.Visible == true)
+                if (picEnemyPoisonPacket.Visible == true)
                 {
                     enemyPoisonPacket.Img = picEnemyPoisonPacket.BackgroundImage;
                     Fight(enemyPoisonPacket);
                 }
-               
+
             }
             else if (HitAChar(player, enemyCheeto))
             {
-                if(picEnemyCheeto.Visible == true) {
+                if (picEnemyCheeto.Visible == true)
+                {
                     enemyCheeto.Img = picEnemyCheeto.BackgroundImage;
                     Fight(enemyCheeto);
                 }
-               
+
             }
             if (HitAChar(player, bossKoolaid))
             {
-               if(picBossKoolAid.Visible == true)
+                if (picBossKoolAid.Visible == true)
                 {
                     bossKoolaid.Img = picBossKoolAid.BackgroundImage;
                     Fight(bossKoolaid);
                 }
-               
+
             }
 
             // update player's picture box
@@ -400,7 +409,7 @@ namespace Fall2020_CSC403_Project
         }
 
 
-
+        // Checks if the character has hit a wall.
         private bool HitAWall(Character c)
         {
             bool hitAWall = false;
@@ -415,14 +424,16 @@ namespace Fall2020_CSC403_Project
             return hitAWall;
         }
 
+        // Checks if two characters have collided.
         private bool HitAChar(Character you, Character other)
         {
             return you.Collider.Intersects(other.Collider);
         }
 
+        // Handles the logic for initiating a fight with an enemy.
         private void Fight(Enemy enemy)
         {
-           
+
 
             if (enemy == bossKoolaid)
             {
@@ -430,12 +441,14 @@ namespace Fall2020_CSC403_Project
                 enemy.Img = picBossKoolAid.BackgroundImage;
                 frmBattle.SetupForBossBattle();
 
-            }else if(enemy == enemyCheeto)
+            }
+            else if (enemy == enemyCheeto)
             {
                 name = "enemycheeto";
                 enemy.Img = picEnemyCheeto.BackgroundImage;
 
-            }else if(enemy == enemyPoisonPacket)
+            }
+            else if (enemy == enemyPoisonPacket)
             {
                 name = "enemyPoisonPacket";
                 enemy.Img = picEnemyPoisonPacket.BackgroundImage;
@@ -451,44 +464,48 @@ namespace Fall2020_CSC403_Project
 
             //updating player health
             int health = player.Health - 8;
-           
+
             float playerHealthPer = health / (float)player.MaxHealth;
             const int MAX_HEALTHBAR_WIDTH = 226;
             lblPlayerHealth.Width = (int)(MAX_HEALTHBAR_WIDTH * playerHealthPer);
-            lblPlayerHealth.Text = health.ToString();            
-       
-                //RemoveEnemy(enemy);
-            
+            lblPlayerHealth.Text = health.ToString();
+
+            //RemoveEnemy(enemy);
+
         }
+
+        // Removes a defeated enemy from the game.		
         private void RemoveEnemy(Enemy enemy)
         {
             if (enemy == enemyPoisonPacket)
             {
                 picEnemyPoisonPacket.Visible = false;
                 btn1.Visible = false;
-               
+
             }
-            else if (enemy == bossKoolaid )
+            else if (enemy == bossKoolaid)
             {
                 picBossKoolAid.Visible = false;
                 button6.Visible = false;
-                
+
             }
             else if (enemy == enemyCheeto)
             {
                 picEnemyCheeto.Visible = false;
-                button14.Visible=false;
+                button14.Visible = false;
             }
 
         }
 
 
-
+        // Overrides the OnLoad event to set the active control to null.
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             this.ActiveControl = null;
         }
+
+        // Overrides ProcessCmdKey to handle player movement controls.
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             // Handle player movement through ProcessCmdKey
@@ -513,7 +530,7 @@ namespace Fall2020_CSC403_Project
             return true; // Indicates that you've handled the key press
         }
 
-
+        // KeyDown event handler for player movement.
         private void FrmLevel_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -539,6 +556,7 @@ namespace Fall2020_CSC403_Project
                     break;
             }
         }
+        // KeyUp event handler to reset player movement speed.
         private void FrmLevel_KeyUp(object sender, KeyEventArgs e)
         {
             player.ResetMoveSpeed();
@@ -554,37 +572,41 @@ namespace Fall2020_CSC403_Project
 
         }
 
+        // Event handler for entering groupBox1. Hides the groupBox.
         private void groupBox1_Enter(object sender, EventArgs e)
         {
-           groupBox1.Visible = false;   
+            groupBox1.Visible = false;
         }
 
+        // Event handler for button1 click. Moves and hides groupBox1.
         private void button1_Click(object sender, EventArgs e)
         {
             groupBox1.Location = new Point(632, 716);
             groupBox1.Visible = false;
-            
+
         }
 
+        // Event handler for button3 click. Changes the background image of all wall PictureBoxes to 'wall3'.
         private void button3_Click(object sender, EventArgs e)
         {
             picWall0.BackgroundImage = Resources.wall3;
             picWall1.BackgroundImage = Resources.wall3;
             picWall2.BackgroundImage = Resources.wall3;
-            picWall3.BackgroundImage = Resources.wall3;   
+            picWall3.BackgroundImage = Resources.wall3;
             picWall4.BackgroundImage = Resources.wall3;
             picWall5.BackgroundImage = Resources.wall3;
-            picWall6.BackgroundImage = Resources.wall3; 
+            picWall6.BackgroundImage = Resources.wall3;
             picWall7.BackgroundImage = Resources.wall3;
             picWall8.BackgroundImage = Resources.wall3;
             picWall9.BackgroundImage = Resources.wall3;
             picWall10.BackgroundImage = Resources.wall3;
-            picWall11.BackgroundImage = Resources.wall3;    
+            picWall11.BackgroundImage = Resources.wall3;
             picWall12.BackgroundImage = Resources.wall3;
-           
+
 
         }
 
+        // Event handler for button5 click. Changes the background image of all wall PictureBoxes to the default 'wall'.
         private void button5_Click(object sender, EventArgs e)
         {
             picWall0.BackgroundImage = Resources.wall;
@@ -602,6 +624,7 @@ namespace Fall2020_CSC403_Project
             picWall12.BackgroundImage = Resources.wall;
         }
 
+        // Event handler for button2 click. Changes the background image of all wall PictureBoxes to 'wall2'.
         private void button2_Click(object sender, EventArgs e)
         {
             picWall0.BackgroundImage = Resources.wall2;
@@ -618,7 +641,8 @@ namespace Fall2020_CSC403_Project
             picWall11.BackgroundImage = Resources.wall2;
             picWall12.BackgroundImage = Resources.wall2;
         }
-        
+
+        // Event handler for button4 click. Changes the background image of all wall PictureBoxes to 'wall4'.        
         private void button4_Click(object sender, EventArgs e)
         {
             picWall0.BackgroundImage = Resources.wall4;
@@ -636,39 +660,45 @@ namespace Fall2020_CSC403_Project
             picWall12.BackgroundImage = Resources.wall4;
         }
 
+        // Event handler for the second button2 click (duplicated button). Restarts the application.
         private void button2_Click_1(object sender, EventArgs e)
         {
-              Application.Restart();
-              Environment.Exit(0);
-           
+            Application.Restart();
+            Environment.Exit(0);
+
         }
 
         string skinChange;
+
+        // Event handler for button15 click. Moves groupBox3 to a specific location on the screen.
         private void button15_Click(object sender, EventArgs e)
         {
             groupBox3.Location = new Point(1257, 298);
-            
+
         }
 
+        // Event handler for button6 click. Sets the skin change target to 'boss' and moves groupBox3.
         private void button6_Click(object sender, EventArgs e)
         {
             skinChange = "boss";
             groupBox3.Location = new Point(887, 98);
-            
+
         }
 
+        // Event handler for button13 click. Sets the skin change target to 'poison' and moves groupBox3.
         private void button13_Click(object sender, EventArgs e)
         {
             skinChange = "poison";
             groupBox3.Location = new Point(194, 74);
-           
+
         }
 
+        // Event handler for button14 click. Sets the skin change target to 'cheeto' and moves groupBox3.
         private void button14_Click(object sender, EventArgs e)
         {
             skinChange = "cheeto";
             groupBox3.Location = new Point(887, 243);
-            
+
         }
 
         private void picBossKoolAid_Click(object sender, EventArgs e)
@@ -681,21 +711,24 @@ namespace Fall2020_CSC403_Project
 
         }
 
+        // Event handler for button7 click. Changes the skin of the selected enemy to 'enemy_poisonpacket_fw'.
         private void button7_Click(object sender, EventArgs e)
         {
-            if(skinChange == "boss")
+            if (skinChange == "boss")
             {
                 picBossKoolAid.BackgroundImage = Resources.enemy_poisonpacket_fw;
-            }else if(skinChange == "cheeto")
+            }
+            else if (skinChange == "cheeto")
             {
                 picEnemyCheeto.BackgroundImage = Resources.enemy_poisonpacket_fw;
             }
-            else if(skinChange == "poison")
+            else if (skinChange == "poison")
             {
-                picEnemyPoisonPacket.BackgroundImage = Resources.enemy_poisonpacket_fw;    
+                picEnemyPoisonPacket.BackgroundImage = Resources.enemy_poisonpacket_fw;
             }
         }
 
+        // Event handler for button8 click. Changes the skin of the selected enemy to 'enemy_koolaid'.
         private void button8_Click(object sender, EventArgs e)
         {
             if (skinChange == "boss")
@@ -706,12 +739,13 @@ namespace Fall2020_CSC403_Project
             {
                 picEnemyCheeto.BackgroundImage = Resources.enemy_koolaid;
             }
-            else if( skinChange == "poison")
+            else if (skinChange == "poison")
             {
                 picEnemyPoisonPacket.BackgroundImage = Resources.enemy_koolaid;
             }
         }
 
+        // Event handler for button9 click. Changes the skin of the selected enemy to 'enemy_cheetos_fw'.
         private void button9_Click(object sender, EventArgs e)
         {
             if (skinChange == "boss")
@@ -722,12 +756,13 @@ namespace Fall2020_CSC403_Project
             {
                 picEnemyCheeto.BackgroundImage = Resources.enemy_cheetos_fw;
             }
-            else if(skinChange == "poison")
+            else if (skinChange == "poison")
             {
                 picEnemyPoisonPacket.BackgroundImage = Resources.enemy_cheetos_fw;
             }
         }
 
+        // Event handler for button10 click. Changes the skin of the selected enemy to 'batvillain'.
         private void button10_Click(object sender, EventArgs e)
         {
             if (skinChange == "boss")
@@ -738,12 +773,13 @@ namespace Fall2020_CSC403_Project
             {
                 picEnemyCheeto.BackgroundImage = Resources.batvillain;
             }
-            else if((skinChange =="poison"))
+            else if ((skinChange == "poison"))
             {
                 picEnemyPoisonPacket.BackgroundImage = Resources.batvillain;
             }
         }
 
+        // Event handler for button11 click. Changes the skin of the selected enemy to 'evilman'.
         private void button11_Click(object sender, EventArgs e)
         {
             if (skinChange == "boss")
@@ -754,12 +790,13 @@ namespace Fall2020_CSC403_Project
             {
                 picEnemyCheeto.BackgroundImage = Resources.evilman;
             }
-            else if( skinChange =="poison")
+            else if (skinChange == "poison")
             {
                 picEnemyPoisonPacket.BackgroundImage = Resources.evilman;
             }
         }
 
+        // Event handler for button12 click. Changes the skin of the selected enemy to 'mojo'.
         private void button12_Click(object sender, EventArgs e)
         {
             if (skinChange == "boss")
@@ -770,7 +807,7 @@ namespace Fall2020_CSC403_Project
             {
                 picEnemyCheeto.BackgroundImage = Resources.mojo;
             }
-            else if((skinChange == "poison"))
+            else if ((skinChange == "poison"))
             {
                 picEnemyPoisonPacket.BackgroundImage = Resources.mojo;
             }
@@ -781,11 +818,13 @@ namespace Fall2020_CSC403_Project
 
         }
 
+        // Event handler for button13 click. Displays a message about increased player abilities.
         private void button13_Click_1(object sender, EventArgs e)
         {
             MessageBox.Show("Congratulations, you now have increased attack power, improved agility, and the ability to break through obstacles.");
         }
 
+        // Event handler for button16 click. Displays a message about a new protective shield ability.
         private void button16_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Congratulations, you now have a protective shield against enemy attacks.");
